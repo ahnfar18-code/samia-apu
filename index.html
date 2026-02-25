@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Birthday Samia Apu 🎂</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
+    text-align: center;
+    background: linear-gradient(135deg, #ff758c, #ff7eb3);
+    color: white;
+    overflow-x: hidden;
+}
+
+/* Navigation */
+nav {
+    background: rgba(0,0,0,0.3);
+    padding: 15px;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+}
+nav a {
+    color: white;
+    text-decoration: none;
+    margin: 0 15px;
+    font-weight: bold;
+}
+nav a:hover { text-decoration: underline; }
+
+section {
+    padding: 100px 20px;
+    min-height: 100vh;
+}
+
+h1 {
+    font-size: 38px;
+}
+
+/* Buttons */
+button {
+    padding: 12px 25px;
+    border: none;
+    border-radius: 25px;
+    background: #ff4081;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 20px;
+    transition: .3s;
+}
+button:hover {
+    background: #e91e63;
+    transform: scale(1.1);
+}
+
+/* Cake */
+.cake {
+    position: relative;
+    width: 200px;
+    height: 120px;
+    background: #ffcc80;
+    margin: 30px auto;
+    border-radius: 10px;
+}
+.cake:before {
+    content: "";
+    position: absolute;
+    top: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 160px;
+    height: 30px;
+    background: #fff;
+    border-radius: 10px;
+}
+.candle {
+    position: absolute;
+    top: -50px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 10px;
+    height: 40px;
+    background: #fff;
+}
+.flame {
+    position: absolute;
+    top: -65px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 15px;
+    height: 20px;
+    background: orange;
+    border-radius: 50%;
+    animation: flicker .2s infinite alternate;
+}
+@keyframes flicker {
+    from { opacity: 1; }
+    to { opacity: .5; }
+}
+
+/* Gallery */
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    padding: 20px;
+}
+.gallery img {
+    width: 100%;
+    border-radius: 15px;
+    transition: .3s;
+}
+.gallery img:hover { transform: scale(1.1); }
+
+/* Balloons */
+.balloon {
+    position: fixed;
+    bottom: -100px;
+    width: 40px;
+    height: 50px;
+    border-radius: 50%;
+    animation: floatUp linear infinite;
+}
+@keyframes floatUp {
+    to { transform: translateY(-110vh); }
+}
+
+/* Confetti */
+.confetti {
+    position: fixed;
+    width: 10px;
+    height: 10px;
+    top: -10px;
+    animation: fall linear forwards;
+}
+@keyframes fall {
+    to { transform: translateY(100vh) rotate(360deg); }
+}
+
+/* Typing */
+#typing {
+    font-size: 20px;
+    width: 80%;
+    margin: 20px auto;
+    min-height: 60px;
+}
+</style>
+</head>
+
+<body>
+
+<!-- Background Music -->
+<audio id="music" autoplay loop>
+  <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+</audio>
+
+<nav>
+  <a href="#home">Home</a>
+  <a href="#memories">Memories</a>
+  <a href="#special">Special</a>
+</nav>
+
+<!-- HOME -->
+<section id="home">
+  <h1>🎂 Happy Birthday Samia Apu 🎂</h1>
+  <div class="cake" onclick="blowCandle()">
+    <div class="candle"></div>
+    <div class="flame" id="flame"></div>
+  </div>
+  <p>Click the cake to blow the candle 💨</p>
+  <button onclick="startConfetti()">Celebrate 🎊</button>
+</section>
+
+<!-- MEMORIES -->
+<section id="memories">
+  <h1>✨ Beautiful Memories ✨</h1>
+  <div class="gallery">
+    <img src="photo1.jpg" alt="Memory 1">
+    <img src="photo2.jpg" alt="Memory 2">
+    <img src="photo3.jpg" alt="Memory 3">
+    <img src="photo4.jpg" alt="Memory 4">
+  </div>
+</section>
+
+<!-- SPECIAL MESSAGE -->
+<section id="special">
+  <h1>💖 A Special Message 💖</h1>
+  <div id="typing"></div>
+  <button onclick="typeMessage()">Show Message ✨</button>
+</section>
+
+<script>
+/* Typing Effect */
+function typeMessage() {
+  let text = "Samia Apu, you are one of the kindest, most inspiring and wonderful people in our life. May Allah bless you with endless happiness, love and success. Keep shining always 💖";
+  let i = 0;
+  let speed = 40;
+  document.getElementById("typing").innerHTML = "";
+  function typing() {
+    if (i < text.length) {
+      document.getElementById("typing").innerHTML += text.charAt(i);
+      i++;
+      setTimeout(typing, speed);
+    }
+  }
+  typing();
+}
+
+/* Blow Candle */
+function blowCandle() {
+  document.getElementById("flame").style.display = "none";
+  alert("Make a wish, Samia Apu 💖✨");
+}
+
+/* Confetti */
+function startConfetti() {
+  for (let i = 0; i < 120; i++) {
+    let conf = document.createElement("div");
+    conf.classList.add("confetti");
+    conf.style.left = Math.random() * 100 + "vw";
+    conf.style.backgroundColor = "hsl(" + Math.random() * 360 + ",100%,50%)";
+    conf.style.animationDuration = (Math.random() * 3 + 2) + "s";
+    document.body.appendChild(conf);
+    setTimeout(() => { conf.remove(); }, 5000);
+  }
+}
+
+/* Balloons */
+function createBalloons() {
+  for (let i = 0; i < 12; i++) {
+    let balloon = document.createElement("div");
+    balloon.classList.add("balloon");
+    balloon.style.left = Math.random() * 100 + "vw";
+    balloon.style.backgroundColor = "hsl(" + Math.random() * 360 + ",70%,60%)";
+    balloon.style.animationDuration = (Math.random() * 5 + 5) + "s";
+    document.body.appendChild(balloon);
+  }
+}
+createBalloons();
+</script>
+
+</body>
+</html>
